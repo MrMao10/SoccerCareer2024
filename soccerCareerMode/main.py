@@ -58,10 +58,14 @@ class Footballer:
         
 def trainingDay():
     delay_print("Training Day")
-    ovrIncrease = random.uniform(0.0, 1.0)
+    if player.age < 26:
+        ovrIncrease = random.uniform(0.25, 1.25)
+    elif 31>player.age>26:
+        ovrIncrease = random.uniform(0.0, 1.0)
+    else:
+        ovrIncrease = random.uniform(0.0, 0.2)
     player.ovr += ovrIncrease
-    delay_print("Your new overall level is now " + str(player.ovr) + str(ovrIncrease))
-    
+    delay_print(f"Your new overall level is now {player.ovr:.2f}")
 
 if __name__ == "__main__":
     # Settings
@@ -94,3 +98,5 @@ if __name__ == "__main__":
     print(f"Age: {player.age}")
     print(f"Nationality: {player.nationality}")
     print(f"Position: {player.position}")
+    
+    trainingDay()
