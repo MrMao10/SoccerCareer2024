@@ -1,6 +1,7 @@
 import time
 import sys
 import random
+import calendar
 
 # Delay Printing Function
 def delay_print(s, delay=0.05):
@@ -55,6 +56,9 @@ class Footballer:
         valid_positions = ['Defender', 'Midfielder', 'Attacker']
         # Get position from the user
         self.position = get_valid_input('What will your character\'s position be? (Defender, Midfielder, or Attacker) ', valid_positions)
+    
+teams = ['Bohemians', 'Dundalk', 'Drogheda United', 'Waterford', 'Sligo Rovers', 'Shamrock Rovers', 'St Patricks Athletic', 'Galway United', 'Shelbourne' ]
+
         
 def trainingDay():
     delay_print("Training Day")
@@ -65,7 +69,41 @@ def trainingDay():
     else:
         ovrIncrease = random.uniform(0.0, 0.2)
     player.ovr += ovrIncrease
-    delay_print(f"Your new overall level is now {player.ovr:.2f}")
+    delay_print(f"Your new overall level is now {player.ovr:.0f}")
+    
+def matchday():
+    delay_print("Match day\n")
+    opposition = random.choice(teams)
+    print(f"Derry City v {opposition}")
+    home = random.randint(0,4)
+    away = random.randint(0,4)
+    if away == 0:
+        cleansheet = True
+    else:
+        cleensheet = False
+    if player.position == 'Defender':
+        goals = 0
+        assists = random.randint(0,home)
+    elif player.position == 'Attacker':
+        goals = random.randint(0,home)
+        assists = random.randint(0,home-goals)
+    elif player.position == 'Midfielder':
+        goals = random.randint(0,home)
+        assists = random.randint(0,home-goals)
+    delay_print(f"Your team scored {str(home)}\n")
+    delay_print(f"{opposition} scored {str(away)}\n")
+    if goals > 0:      
+        delay_print(f"You scored {str(goals)}\n")
+    if assists > 0:
+        delay_print(f"You had {str(assists)} assist(s)\n")
+    if home > away:
+        delay_print("You won\n")
+        player.ovr += 0.2
+        delay_print(f"Your overall is {player.ovr:.0f}\n")
+    elif home < away:
+        delay_print("You lost\n")
+    elif home == away:
+        delay_print("You drew\n")
 
 if __name__ == "__main__":
     # Settings
@@ -83,7 +121,7 @@ if __name__ == "__main__":
             text_delay = 0.05  # Default medium speed
     else:
         text_delay = 0.04  # Default back option
-
+        
     # Introduction Messages
     delay_print("Welcome to Soccer Career 2024.", text_delay)
     delay_print("In this text-based game, you will play as a football player in the Irish first league. "
@@ -91,12 +129,17 @@ if __name__ == "__main__":
                 "so I can fix them. I would also appreciate any recommendations to improve the game. Thanks!", text_delay)
 
     # Player Setup
-    player = Footballer(firstName='', surname='', age=0, ovr=40, pot=95, skills=0, weakFoot=0, club='', league='', nationality='', price=50000, wage=350, position='')
+    player = Footballer(firstName='', surname='', age='', ovr=40, pot=95, skills=0, weakFoot=0, club="Derry City", league="Irish Premier Devision", nationality='', price=50000, wage=350, position='')
     player.player_setup()
     print("\nPlayer setup complete. Here is your player information:")
     print(f"Name: {player.firstName} {player.surname}")
     print(f"Age: {player.age}")
     print(f"Nationality: {player.nationality}")
     print(f"Position: {player.position}")
+    print(f"Club: {player.club}")
+    print(f"League: {player.league}")
+    time.sleep(3)
     
     trainingDay()
+    time.sleep(1)
+    matchday()
