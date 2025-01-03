@@ -1,7 +1,6 @@
 import time
 import sys
 import random
-import calendar
 
 # Delay Printing Function
 def delay_print(s, delay=0.05):
@@ -51,8 +50,7 @@ class Footballer:
                     return user_input
                 else:
                     print(f"Invalid input. Please enter one of the following: {', '.join(options)}")
-
-        # Define valid positions
+            
         valid_positions = ['Defender', 'Midfielder', 'Attacker']
         # Get position from the user
         self.position = get_valid_input('What will your character\'s position be? (Defender, Midfielder, or Attacker) ', valid_positions)
@@ -80,30 +78,67 @@ def matchday():
     if away == 0:
         cleansheet = True
     else:
-        cleensheet = False
-    if player.position == 'Defender':
-        goals = 0
-        assists = random.randint(0,home)
-    elif player.position == 'Attacker':
-        goals = random.randint(0,home)
-        assists = random.randint(0,home-goals)
-    elif player.position == 'Midfielder':
-        goals = random.randint(0,home)
-        assists = random.randint(0,home-goals)
-    delay_print(f"Your team scored {str(home)}\n")
-    delay_print(f"{opposition} scored {str(away)}\n")
-    if goals > 0:      
-        delay_print(f"You scored {str(goals)}\n")
-    if assists > 0:
-        delay_print(f"You had {str(assists)} assist(s)\n")
-    if home > away:
-        delay_print("You won\n")
-        player.ovr += 0.2
-        delay_print(f"Your overall is {player.ovr:.0f}\n")
-    elif home < away:
-        delay_print("You lost\n")
-    elif home == away:
-        delay_print("You drew\n")
+        cleansheet = False
+    if player.position == 'Defender' and player.ovr < 55:
+        #goals = random.choice([0, 0, 0, 0, 0, 0, 1, 1, 2, 3])
+        goals = min(random.randint(0, home), random.randint(0, home), random.randint(0, home), random.randint(0, home))
+        assists = min(random.randint(0, home-goals), random.randint(0, home-goals), random.randint(0, home-goals))
+        if goals > 0:      
+            delay_print(f"You scored {str(goals)}\n")
+        if assists > 0:
+            delay_print(f"You had {str(assists)} assist(s)\n")
+        if cleansheet == True:
+            delay_print(f"You kept a cleansheet")
+        else:
+            pass
+        delay_print(f"Your team scored {str(home)}\n")
+        delay_print(f"{opposition} scored {str(away)}\n")
+        if home > away:
+            delay_print("You won\n")
+            player.ovr += 0.2
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
+        elif home < away:
+            delay_print("You lost\n")
+        elif home == away:
+            delay_print("You drew\n")
+    elif player.position == 'Attacker' and player.ovr < 55:
+        #goals = random.randint(0,home)
+        goals = min(random.randint(0, home), random.randint(0, home))
+        #assists = random.randint(0,home-goals)
+        assists = min(random.randint(0, home-goals), random.randint(0, home-goals), random.randint(0, home-goals))
+        if goals > 0:      
+            delay_print(f"You scored {str(goals)}\n")
+        if assists > 0:
+            delay_print(f"You had {str(assists)} assist(s)\n")
+        delay_print(f"Your team scored {str(home)}\n")
+        delay_print(f"{opposition} scored {str(away)}\n")
+        if home > away:
+            delay_print("You won\n")
+            player.ovr += 0.2
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
+        elif home < away:
+            delay_print("You lost\n")
+        elif home == away:
+            delay_print("You drew\n")
+    elif player.position == 'Midfielder' and player.ovr < 55:
+        #goals = random.randint(0,home)
+        goals = min(random.randint(0, home), random.randint(0, home), random.randint(0, home))
+        #assists = random.randint(0,home-goals)
+        assists = min(random.randint(0, home-goals), random.randint(0, home-goals))
+        if goals > 0:      
+            delay_print(f"You scored {str(goals)}\n")
+        if assists > 0:
+            delay_print(f"You had {str(assists)} assist(s)\n")
+        delay_print(f"Your team scored {str(home)}\n")
+        delay_print(f"{opposition} scored {str(away)}\n")
+        if home > away:
+            delay_print("You won\n")
+            player.ovr += 0.2
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
+        elif home < away:
+            delay_print("You lost\n")
+        elif home == away:
+            delay_print("You drew\n")
 
 if __name__ == "__main__":
     # Settings
@@ -117,6 +152,8 @@ if __name__ == "__main__":
             text_delay = 0.03
         elif printSpeed == 'fast':
             text_delay = 0.008
+        elif printSpeed == 'dev':
+            text_delay = 0.001
         else:
             text_delay = 0.05  # Default medium speed
     else:
@@ -143,3 +180,24 @@ if __name__ == "__main__":
     trainingDay()
     time.sleep(1)
     matchday()
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
