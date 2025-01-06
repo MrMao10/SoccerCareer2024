@@ -1,12 +1,14 @@
 1. Swap out random probability of winning to different chances verses different teams and their ratings
 
-2. create a class "team" so teams can have different ratings
-
-3. create different probability of cleansheets, goals and assists for each position
-      -in progress
 4. make you not able to progress past your potential
 
-5. clean up matchday
+3. Make skill-specific training sessions chose by the user
 
-6. stop defenders from being able to score more than their team
+4. only advance days after asking player
+
+5. change probability of scoring, assisting and cleansheet on player's finishing, vision and defence levels
+
+6. calculate overall level on average? of three statistics. find a way to calculate it like fifa does (wwighted on certain stats for each position)
+
+7. add man of the match (Over half of goal involvements for now, later add match ratings and passes, dribbles, completed, failed ect.)
 
