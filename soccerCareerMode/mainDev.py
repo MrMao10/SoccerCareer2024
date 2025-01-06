@@ -1,6 +1,7 @@
 import time
 import sys
 import random
+from leagueTable import club
 
 # Delay Printing Function
 def delay_print(s, delay=0.05):
@@ -12,7 +13,7 @@ def delay_print(s, delay=0.05):
 
 # Footballer Class Definition
 class Footballer:
-    def __init__(self, firstName, surname, age, ovr, pot, skills, weakFoot, club, league, nationality, price, wage, position):
+    def __init__(self, firstName, surname, age, ovr, pot, skills, weakFoot, club, league, nationality, price, wage, position, finishing, vision, defending):
         self.firstName = firstName
         self.surname = surname
         self.age = age
@@ -26,6 +27,9 @@ class Footballer:
         self.price = price
         self.wage = wage
         self.position = position
+        self.finishing = finishing
+        self.vision = vision
+        self.defending = defending
 
     def player_setup(self):
         self.firstName = input('\nWhat will your character\'s first name be? ')
@@ -54,91 +58,127 @@ class Footballer:
         valid_positions = ['Defender', 'Midfielder', 'Attacker']
         # Get position from the user
         self.position = get_valid_input('What will your character\'s position be? (Defender, Midfielder, or Attacker) ', valid_positions)
-    
-teams = ['Bohemians', 'Dundalk', 'Drogheda United', 'Waterford', 'Sligo Rovers', 'Shamrock Rovers', 'St Patricks Athletic', 'Galway United', 'Shelbourne' ]
-
+        if self.position == 'Defender':
+            self.defending = 45
+            self.vision = 33
+            self.finishing = 20
+        elif self.position == 'Midfielder':
+            self.defending = 30
+            self.vision = 38
+            self.finishing = 30
+        elif self.position == 'Attacker':
+            self.defending = 20
+            self.vision = 33
+            self.finishing = 45
         
+    
+teams = ['Bohemians', 'Dundalk', 'Drogheda United', 'UCD', 'Sligo Rovers', 'Shamrock Rovers', 'St Patricks Athletic', 'Cork City', 'Shelbourne' ]
+Bohemians = club('Bohemians', 60, 59, 59, 60, 1890, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
+Dundalk = club('Dundalk', 58, 58, 60, 58, 1903, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
+Drogheda_United = club('Drogheda United', 57, 57, 58, 56, 1919, '', '', '', '', '', 8570, 'Ireland', 'Irish Premier Division', '', '', '')
+UCDfc = club('UCD', 55, 55, 54, 54, 1895, '', '', '', '', '', 4290, 'Ireland', 'Irish Premier Division', '', '', '')
+Sligo_Rovers = club('Sligo Rovers', 59, 59, 57, 58, 1928, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
+Shamrock_Rovers = club('Shamrock Rovers', 63, 63, 64, 62, 1899, '', '', '', '', '', 60020, 'Ireland', 'Irish Premier Division', '', '', '')
+St_Patricks_Athletic = club('St Patricks Athletic', 62, 61, 62, 63, 1929, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
+Cork_City = club('Galway United', 56, 56, 58, 56, 1984, '', '', '', '', '', 0, 'Ireland', 'Irish Premier Division', '', '', '')
+Shelbourne = club('Shelbourne', 60, 61, 61, 59, 1895, '', '', '', '', '', 21440, 'Ireland', 'Irish Premier Division', '', '', '')
+Derry_City = club('Derry City', 61, 60, 64, 62, 1928, '', '', '', '', '', 100000, 'Ireland', 'Irish Premier Divsion', '', '', '')
+    
 def trainingDay():
     delay_print("Training Day")
     if player.age < 26:
-        ovrIncrease = random.uniform(0.25, 1.25)
-    elif 31>player.age>26:
-        ovrIncrease = random.uniform(0.0, 1.0)
+        ovrIncrease = random.uniform(0.2, 0.8)
+    elif 31 > player.age > 26:
+        ovrIncrease = random.uniform(0.0, 0.075)
     else:
-        ovrIncrease = random.uniform(0.0, 0.2)
+        ovrIncrease = random.uniform(0.0, 0.05)
     player.ovr += ovrIncrease
-    delay_print(f"Your new overall level is now {player.ovr:.0f}")
+    delay_print(f"Your overall level is now {player.ovr:.0f}\n")
     
 def matchday():
     delay_print("Match day\n")
     opposition = random.choice(teams)
     print(f"Derry City v {opposition}")
-    home = random.randint(0,4)
-    away = random.randint(0,4)
+    home = min(random.randint(0,4), random.randint(0,4))
+    away = min(random.randint(0,4), random.randint(0,4))
     if away == 0:
         cleansheet = True
     else:
         cleansheet = False
     if player.position == 'Defender' and player.ovr < 55:
-        #goals = random.choice([0, 0, 0, 0, 0, 0, 1, 1, 2, 3])
+        delay_print(f"{player.club}: {str(home)}\n")
+        delay_print(f"{opposition}: {str(away)}\n")
         goals = min(random.randint(0, home), random.randint(0, home), random.randint(0, home), random.randint(0, home))
         assists = min(random.randint(0, home-goals), random.randint(0, home-goals), random.randint(0, home-goals))
         if goals > 0:      
             delay_print(f"You scored {str(goals)}\n")
+            player.ovr += 0.8
         if assists > 0:
             delay_print(f"You had {str(assists)} assist(s)\n")
+            player.ovr += 0.07
         if cleansheet == True:
-            delay_print(f"You kept a cleansheet")
+            delay_print(f"You kept a cleansheet\n")
+            player.ovr += 0.05
         else:
             pass
-        delay_print(f"Your team scored {str(home)}\n")
-        delay_print(f"{opposition} scored {str(away)}\n")
         if home > away:
             delay_print("You won\n")
-            player.ovr += 0.2
+            player.ovr += 0.1
             delay_print(f"Your overall is {player.ovr:.0f}\n")
         elif home < away:
             delay_print("You lost\n")
+            player.ovr += 0.01
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
         elif home == away:
             delay_print("You drew\n")
+            player.ovr += 0.05
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
     elif player.position == 'Attacker' and player.ovr < 55:
-        #goals = random.randint(0,home)
+        delay_print(f"{player.club}: {str(home)}\n")
+        delay_print(f"{opposition}: {str(away)}\n")
         goals = min(random.randint(0, home), random.randint(0, home))
-        #assists = random.randint(0,home-goals)
         assists = min(random.randint(0, home-goals), random.randint(0, home-goals), random.randint(0, home-goals))
         if goals > 0:      
             delay_print(f"You scored {str(goals)}\n")
+            player.ovr += 0.07
         if assists > 0:
             delay_print(f"You had {str(assists)} assist(s)\n")
-        delay_print(f"Your team scored {str(home)}\n")
-        delay_print(f"{opposition} scored {str(away)}\n")
+            player.ovr += 0.08
         if home > away:
             delay_print("You won\n")
-            player.ovr += 0.2
+            player.ovr += 0.1
             delay_print(f"Your overall is {player.ovr:.0f}\n")
         elif home < away:
             delay_print("You lost\n")
+            player.ovr += 0.01
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
         elif home == away:
             delay_print("You drew\n")
+            player.ovr += 0.05
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
     elif player.position == 'Midfielder' and player.ovr < 55:
-        #goals = random.randint(0,home)
         goals = min(random.randint(0, home), random.randint(0, home), random.randint(0, home))
-        #assists = random.randint(0,home-goals)
         assists = min(random.randint(0, home-goals), random.randint(0, home-goals))
         if goals > 0:      
             delay_print(f"You scored {str(goals)}\n")
+            player.ovr += 0.1
         if assists > 0:
             delay_print(f"You had {str(assists)} assist(s)\n")
-        delay_print(f"Your team scored {str(home)}\n")
-        delay_print(f"{opposition} scored {str(away)}\n")
+            player.ovr += 0.05
+        delay_print(f"{player.club}: {str(home)}\n")
+        delay_print(f"{opposition}: {str(away)}\n")
         if home > away:
             delay_print("You won\n")
-            player.ovr += 0.2
+            player.ovr += 0.1
             delay_print(f"Your overall is {player.ovr:.0f}\n")
         elif home < away:
             delay_print("You lost\n")
+            player.ovr += 0.01
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
         elif home == away:
             delay_print("You drew\n")
+            player.ovr += 0.05
+            delay_print(f"Your overall is {player.ovr:.0f}\n")
 
 if __name__ == "__main__":
     # Settings
@@ -166,7 +206,7 @@ if __name__ == "__main__":
                 "so I can fix them. I would also appreciate any recommendations to improve the game. Thanks!", text_delay)
 
     # Player Setup
-    player = Footballer(firstName='', surname='', age='', ovr=40, pot=95, skills=0, weakFoot=0, club="Derry City", league="Irish Premier Devision", nationality='', price=50000, wage=350, position='')
+    player = Footballer(firstName='', surname='', age='', ovr=40, pot=95, skills=0, weakFoot=0, club="Derry City", league="Irish Premier Devision", nationality='', price=50000, wage=350, position='', finishing='', vision='', defending='')
     player.player_setup()
     print("\nPlayer setup complete. Here is your player information:")
     print(f"Name: {player.firstName} {player.surname}")
@@ -175,6 +215,9 @@ if __name__ == "__main__":
     print(f"Position: {player.position}")
     print(f"Club: {player.club}")
     print(f"League: {player.league}")
+    print(f"Defending Attribute: {player.defending}")
+    print(f"Vision Attribute: {player.defending}")
+    print(f"Finishing attribute: {player.finishing}\n")
     time.sleep(3)
     
     trainingDay()
