@@ -21,3 +21,8 @@
 11. add'pause' menu
 
 12. in pause nenu, add option called 'save' and write variables on a txt file to be used later
+
+13. if player.ovr >= player.pot:
+      pass
+    elif player.ovr <= player.pot:
+      training day
