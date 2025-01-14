@@ -1,7 +1,9 @@
 import time
 import sys
 import random
-from leagueTable import club
+import datetime
+from passDay import advance, startDate
+from soccerCareerMode.lib.leagueTable import club
 
 # Delay Printing Function
 def delay_print(s, delay=0.05):
@@ -45,8 +47,8 @@ class Footballer:
             except ValueError:
                 print("Please enter a valid age.")
         self.nationality = input('What will your character\'s nationality be? ')
-        
-        # Function to get valid input from the user
+
+         # Function to get valid input from the user
         def get_valid_input(prompt, options):
             while True:
                 user_input = input(prompt).capitalize()
@@ -54,7 +56,7 @@ class Footballer:
                     return user_input
                 else:
                     print(f"Invalid input. Please enter one of the following: {', '.join(options)}")
-            
+
         valid_positions = ['Defender', 'Midfielder', 'Attacker']
         # Get position from the user
         self.position = get_valid_input('What will your character\'s position be? (Defender, Midfielder, or Attacker) ', valid_positions)
@@ -73,27 +75,32 @@ class Footballer:
         
     
 teams = ['Bohemians', 'Dundalk', 'Drogheda United', 'UCD', 'Sligo Rovers', 'Shamrock Rovers', 'St Patricks Athletic', 'Cork City', 'Shelbourne' ]
-Bohemians = club('Bohemians', 60, 59, 59, 60, 1890, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
-Dundalk = club('Dundalk', 58, 58, 60, 58, 1903, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
-Drogheda_United = club('Drogheda United', 57, 57, 58, 56, 1919, '', '', '', '', '', 8570, 'Ireland', 'Irish Premier Division', '', '', '')
-UCDfc = club('UCD', 55, 55, 54, 54, 1895, '', '', '', '', '', 4290, 'Ireland', 'Irish Premier Division', '', '', '')
-Sligo_Rovers = club('Sligo Rovers', 59, 59, 57, 58, 1928, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
-Shamrock_Rovers = club('Shamrock Rovers', 63, 63, 64, 62, 1899, '', '', '', '', '', 60020, 'Ireland', 'Irish Premier Division', '', '', '')
-St_Patricks_Athletic = club('St Patricks Athletic', 62, 61, 62, 63, 1929, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '')
-Cork_City = club('Galway United', 56, 56, 58, 56, 1984, '', '', '', '', '', 0, 'Ireland', 'Irish Premier Division', '', '', '')
-Shelbourne = club('Shelbourne', 60, 61, 61, 59, 1895, '', '', '', '', '', 21440, 'Ireland', 'Irish Premier Division', '', '', '')
-Derry_City = club('Derry City', 61, 60, 64, 62, 1928, '', '', '', '', '', 100000, 'Ireland', 'Irish Premier Divsion', '', '', '')
+Bohemians = club('Bohemians', 60, 59, 59, 60, 1890, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
+Dundalk = club('Dundalk', 58, 58, 60, 58, 1903, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
+Drogheda_United = club('Drogheda United', 57, 57, 58, 56, 1919, '', '', '', '', '', 8570, 'Ireland', 'Irish Premier Division', '', '', '', '')
+UCDfc = club('UCD', 55, 55, 54, 54, 1895, '', '', '', '', '', 4290, 'Ireland', 'Irish Premier Division', '', '', '', '')
+Sligo_Rovers = club('Sligo Rovers', 59, 59, 57, 58, 1928, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
+Shamrock_Rovers = club('Shamrock Rovers', 63, 63, 64, 62, 1899, '', '', '', '', '', 60020, 'Ireland', 'Irish Premier Division', '', '', '', '')
+St_Patricks_Athletic = club('St Patricks Athletic', 62, 61, 62, 63, 1929, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
+Cork_City = club('Galway United', 56, 56, 58, 56, 1984, '', '', '', '', '', 0, 'Ireland', 'Irish Premier Division', '', '', '', '')
+Shelbourne = club('Shelbourne', 60, 61, 61, 59, 1895, '', '', '', '', '', 21440, 'Ireland', 'Irish Premier Division', '', '', '', '')
+Derry_City = club('Derry City', 61, 60, 64, 62, 1928, '', '', '', '', '', 100000, 'Ireland', 'Irish Premier Divsion', '', '', '', '')
     
 def trainingDay():
     delay_print("Training Day")
-    if player.age < 26:
+    if player.ovr >= player.pot:
+        pass
+    elif player.age < 26:
         ovrIncrease = random.uniform(0.2, 0.8)
     elif 31 > player.age > 26:
         ovrIncrease = random.uniform(0.0, 0.075)
+    elif player.age > 34:
+        ovrIncrease = random.uniform(-0.2, 0)
     else:
         ovrIncrease = random.uniform(0.0, 0.05)
     player.ovr += ovrIncrease
     delay_print(f"Your overall level is now {player.ovr:.0f}\n")
+    
     
 def matchday():
     delay_print("Match day\n")
@@ -157,6 +164,8 @@ def matchday():
             player.ovr += 0.05
             delay_print(f"Your overall is {player.ovr:.0f}\n")
     elif player.position == 'Midfielder' and player.ovr < 55:
+        delay_print(f"{player.club}: {str(home)}\n")
+        delay_print(f"{opposition}: {str(away)}\n")
         goals = min(random.randint(0, home), random.randint(0, home), random.randint(0, home))
         assists = min(random.randint(0, home-goals), random.randint(0, home-goals))
         if goals > 0:      
@@ -165,8 +174,6 @@ def matchday():
         if assists > 0:
             delay_print(f"You had {str(assists)} assist(s)\n")
             player.ovr += 0.05
-        delay_print(f"{player.club}: {str(home)}\n")
-        delay_print(f"{opposition}: {str(away)}\n")
         if home > away:
             delay_print("You won\n")
             player.ovr += 0.1
@@ -216,31 +223,56 @@ if __name__ == "__main__":
     print(f"Club: {player.club}")
     print(f"League: {player.league}")
     print(f"Defending Attribute: {player.defending}")
-    print(f"Vision Attribute: {player.defending}")
+    print(f"Vision Attribute: {player.vision}")
     print(f"Finishing attribute: {player.finishing}\n")
     time.sleep(3)
     
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
     trainingDay()
+    time.sleep(1)
+    advance(player)
     time.sleep(1)
     matchday()
     time.sleep(1)
+    advance(player)
+    time.sleep(1)
     trainingDay()
+    time.sleep(1)
+    advance(player)
     time.sleep(1)
     matchday()
     time.sleep(1)
+    advance(player)
+    time.sleep(1)
     trainingDay()
+    time.sleep(1)
+    advance(player)
     time.sleep(1)
     matchday()
     time.sleep(1)
+    advance(player)
+    time.sleep(1)
     trainingDay()
+    time.sleep(1)
+    advance(player)
     time.sleep(1)
     matchday()
     time.sleep(1)
+    advance(player)
+    time.sleep(1)
     trainingDay()
+    time.sleep(1)
+    advance(player)
     time.sleep(1)
     matchday()
     time.sleep(1)
+    advance(player)
+    time.sleep(1)
     trainingDay()
+    time.sleep(1)
+    advance(player)
     time.sleep(1)
     matchday()
     time.sleep(1)
