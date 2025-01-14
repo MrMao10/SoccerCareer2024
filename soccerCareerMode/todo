@@ -1,7 +1,5 @@
 1. Swap out random probability of winning to different chances verses different teams and their ratings
 
-4. make you not able to progress past your potential
-
 3. Make skill-specific training sessions chose by the user
 
 4. only advance days after asking player
@@ -18,6 +16,8 @@
 
 10. cumulative stats that can be viewed in between advances
 
-11. add'pause' menu
+11. add'pause' menu that displays during an advance option
 
 12. in pause nenu, add option called 'save' and write variables on a txt file to be used later
+
+13. chance of not playing if rating is less than teams or if form is bad
