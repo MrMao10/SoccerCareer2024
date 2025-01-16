@@ -2,8 +2,8 @@ import time
 import sys
 import random
 import datetime
-from passDay import advance, startDate
-from soccerCareerMode.lib.leagueTable import club
+from lib.passDay import advance, startDate
+from lib.leagueTable import club
 
 # Delay Printing Function
 def delay_print(s, delay=0.05):
@@ -15,7 +15,7 @@ def delay_print(s, delay=0.05):
 
 # Footballer Class Definition
 class Footballer:
-    def __init__(self, firstName, surname, age, ovr, pot, skills, weakFoot, club, league, nationality, price, wage, position, finishing, vision, defending):
+    def __init__(self, firstName, surname, age, ovr, pot, skills, weakFoot, club, league, nationality, price, wage, position, goalCount, assistCount, cleansheetCount, appearances, pace, finishing, attPosition, shotPower, longShots, penalties, volleys, vision, crossing, fkAcc, longPass, shortPass, curve, agility, balance, reactions, composure, ballControl, dribbling, interceptions, headingAcc, defAwareness, standTackle, slideTackle, jumping, stamina, strength, aggression):
         self.firstName = firstName
         self.surname = surname
         self.age = age
@@ -29,9 +29,38 @@ class Footballer:
         self.price = price
         self.wage = wage
         self.position = position
+        self.goalCount = goalCount
+        self.assistCount = assistCount
+        self.cleansheetCount = cleansheetCount
+        self.appearances = appearances
+        self.pace = pace
         self.finishing = finishing
+        self.attPosition = attPosition
+        self.shotPower = shotPower
+        self.longShots = longShots
+        self.penalties = penalties
+        self.volleys = volleys
         self.vision = vision
-        self.defending = defending
+        self.crossing = crossing
+        self.fkAcc = fkAcc
+        self.longPass = longPass
+        self.shortPass = shortPass
+        self.curve = curve
+        self.agility = agility
+        self.balance = balance
+        self.reactions = reactions
+        self.composure = composure
+        self.ballControl = ballControl
+        self.dribbling = dribbling
+        self.interceptions = interceptions
+        self.headingAcc = headingAcc
+        self.defAwareness = defAwareness
+        self.standTackle = standTackle
+        self.slideTackle = slideTackle
+        self.jumping = jumping
+        self.stamina = stamina
+        self.strength = strength
+        self.aggression = aggression
 
     def player_setup(self):
         self.firstName = input('\nWhat will your character\'s first name be? ')
@@ -61,9 +90,34 @@ class Footballer:
         # Get position from the user
         self.position = get_valid_input('What will your character\'s position be? (Defender, Midfielder, or Attacker) ', valid_positions)
         if self.position == 'Defender':
-            self.defending = 45
-            self.vision = 33
+            self.pace = 40
             self.finishing = 20
+            self.attPosition = 20
+            self.shotPower = 27
+            self.longShots = 20
+            self.penalties = 25
+            self.volleys = 20
+            self.vision = 30
+            self.crossing = 30
+            self.fkAcc = 25
+            self.longPass =  30
+            self.shortPass = 35
+            self.curve = 30
+            self.agility = 30
+            self.balance = 30
+            self.reactions = 40
+            self.composure = 28
+            self.ballControl = 30
+            self.dribbling = 27
+            self.interceptions = 43
+            self.headingAcc = 47
+            self.defAwareness = 47
+            self.standTackle = 47
+            self.slideTackle = 47
+            self.jumping = 40
+            self.stamina = 40
+            self.strength = 45
+            self.aggression = 45
         elif self.position == 'Midfielder':
             self.defending = 30
             self.vision = 38
@@ -84,7 +138,7 @@ Shamrock_Rovers = club('Shamrock Rovers', 63, 63, 64, 62, 1899, '', '', '', '', 
 St_Patricks_Athletic = club('St Patricks Athletic', 62, 61, 62, 63, 1929, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
 Cork_City = club('Galway United', 56, 56, 58, 56, 1984, '', '', '', '', '', 0, 'Ireland', 'Irish Premier Division', '', '', '', '')
 Shelbourne = club('Shelbourne', 60, 61, 61, 59, 1895, '', '', '', '', '', 21440, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Derry_City = club('Derry City', 61, 60, 64, 62, 1928, '', '', '', '', '', 100000, 'Ireland', 'Irish Premier Divsion', '', '', '', '')
+Derry_City = club('Derry City', 61, 60, 64, 62, 1928, '', '', '', '', '', 100000, 'Ireland', 'Irish Premier Divsion', 0, 0, 0, 0)
     
 def trainingDay():
     delay_print("Training Day")
@@ -116,7 +170,9 @@ def matchday():
         delay_print(f"{player.club}: {str(home)}\n")
         delay_print(f"{opposition}: {str(away)}\n")
         goals = min(random.randint(0, home), random.randint(0, home), random.randint(0, home), random.randint(0, home))
+        player.goalCount += goals
         assists = min(random.randint(0, home-goals), random.randint(0, home-goals), random.randint(0, home-goals))
+        player.assistCount += assists
         if goals > 0:      
             delay_print(f"You scored {str(goals)}\n")
             player.ovr += 0.8
@@ -126,6 +182,7 @@ def matchday():
         if cleansheet == True:
             delay_print(f"You kept a cleansheet\n")
             player.ovr += 0.05
+            player.cleansheetCount += 1
         else:
             pass
         if home > away:
@@ -144,7 +201,9 @@ def matchday():
         delay_print(f"{player.club}: {str(home)}\n")
         delay_print(f"{opposition}: {str(away)}\n")
         goals = min(random.randint(0, home), random.randint(0, home))
+        player.goalCount += goals
         assists = min(random.randint(0, home-goals), random.randint(0, home-goals), random.randint(0, home-goals))
+        player.assistCount += assists
         if goals > 0:      
             delay_print(f"You scored {str(goals)}\n")
             player.ovr += 0.07
@@ -167,7 +226,9 @@ def matchday():
         delay_print(f"{player.club}: {str(home)}\n")
         delay_print(f"{opposition}: {str(away)}\n")
         goals = min(random.randint(0, home), random.randint(0, home), random.randint(0, home))
+        player.goalCount += goals
         assists = min(random.randint(0, home-goals), random.randint(0, home-goals))
+        player.assistCount += assists
         if goals > 0:      
             delay_print(f"You scored {str(goals)}\n")
             player.ovr += 0.1
@@ -213,7 +274,7 @@ if __name__ == "__main__":
                 "so I can fix them. I would also appreciate any recommendations to improve the game. Thanks!", text_delay)
 
     # Player Setup
-    player = Footballer(firstName='', surname='', age='', ovr=40, pot=95, skills=0, weakFoot=0, club="Derry City", league="Irish Premier Devision", nationality='', price=50000, wage=350, position='', finishing='', vision='', defending='')
+    player = Footballer(firstName='', surname='', age='', ovr=40, pot=95, skills=0, weakFoot=0, club="Derry City", league="Irish Premier Devision", nationality='', price=50000, wage=350, position='', finishing='', vision='', defending='', goalCount=0, assistCount=0, cleansheetCount=0, appearances=0)
     player.player_setup()
     print("\nPlayer setup complete. Here is your player information:")
     print(f"Name: {player.firstName} {player.surname}")
