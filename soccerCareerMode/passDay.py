@@ -1,5 +1,5 @@
 import datetime
-from lib.itest import Derry_City
+from lib.leagueTable import clubs
 
 startDate = datetime.datetime(2024, 2, 1)
 
@@ -16,11 +16,11 @@ def advance(player):
     elif advanceMenu == 'standings':
         pass #display league table
     elif advanceMenu == 'stats':
-        stats = input(f'\n{player.name} STATS\n TEAM STATS').lower()
+        stats = input(f'\n{player.firstName} {player.surname} STATS     TEAM STATS\n').lower()
         if stats == 'player stats':
             #print player goals, assists, cleansheets, appearances
-            pass
+            print(f"\n Total Goals: {player.goalCount}\nTotal Assists: {player.assistCount}\nTotal Appearances: {player.appearances}\nTotal Cleansheets: {player.cleansheetCount}")
         elif stats == 'team stats':
-            print(f"\nTotal Team Goals: {Derry_City.goals}\nTeam Cleansheets: {Derry_City.cleansheets}")
+            print(f"\nTotal Team Goals: {clubs[9].gf}\nTeam Cleansheets: {clubs[9].cleansheets}")
         else:
             pass
