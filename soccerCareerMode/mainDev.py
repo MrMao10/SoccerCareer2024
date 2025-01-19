@@ -121,75 +121,65 @@ class Footballer:
             self.aggression = 45
         elif self.position == 'Midfielder':
             self.pace = 40
-            self.finishing = 20
-            self.attPosition = 20
-            self.shotPower = 27
-            self.longShots = 20
-            self.penalties = 25
-            self.volleys = 20
-            self.vision = 30
-            self.crossing = 30
-            self.fkAcc = 25
-            self.longPass =  30
-            self.shortPass = 35
-            self.curve = 30
-            self.agility = 30
-            self.balance = 30
-            self.reactions = 40
-            self.composure = 28
-            self.ballControl = 30
-            self.dribbling = 27
-            self.interceptions = 43
-            self.headingAcc = 47
-            self.defAwareness = 47
-            self.standTackle = 47
-            self.slideTackle = 47
-            self.jumping = 40
+            self.finishing = 25
+            self.attPosition = 33
+            self.shotPower = 28
+            self.longShots = 35
+            self.penalties = 30
+            self.volleys = 28
+            self.vision = 48
+            self.crossing = 28
+            self.fkAcc = 35
+            self.longPass =  45
+            self.shortPass = 50
+            self.curve = 38
+            self.agility = 33
+            self.balance = 33
+            self.reactions = 43
+            self.composure = 33
+            self.ballControl = 47
+            self.dribbling = 43
+            self.interceptions = 35
+            self.headingAcc = 25
+            self.defAwareness = 35
+            self.standTackle = 37
+            self.slideTackle = 30
+            self.jumping = 28
             self.stamina = 40
-            self.strength = 45
-            self.aggression = 45
+            self.strength = 28
+            self.aggression = 38
         elif self.position == 'Attacker':
-            self.pace = 40
-            self.finishing = 20
-            self.attPosition = 20
-            self.shotPower = 27
-            self.longShots = 20
-            self.penalties = 25
-            self.volleys = 20
-            self.vision = 30
+            self.pace = 35
+            self.finishing = 50
+            self.attPosition = 48
+            self.shotPower = 47
+            self.longShots = 38
+            self.penalties = 40
+            self.volleys = 35
+            self.vision = 34
             self.crossing = 30
-            self.fkAcc = 25
-            self.longPass =  30
-            self.shortPass = 35
-            self.curve = 30
-            self.agility = 30
-            self.balance = 30
-            self.reactions = 40
-            self.composure = 28
-            self.ballControl = 30
-            self.dribbling = 27
-            self.interceptions = 43
+            self.fkAcc = 33
+            self.longPass =  32
+            self.shortPass = 34
+            self.curve = 33
+            self.agility = 33
+            self.balance = 33
+            self.reactions = 43
+            self.composure = 33
+            self.ballControl = 45
+            self.dribbling = 42
+            self.interceptions = 25
             self.headingAcc = 47
-            self.defAwareness = 47
-            self.standTackle = 47
-            self.slideTackle = 47
-            self.jumping = 40
-            self.stamina = 40
-            self.strength = 45
-            self.aggression = 45
+            self.defAwareness = 18
+            self.standTackle = 21
+            self.slideTackle = 20
+            self.jumping = 42
+            self.stamina = 37
+            self.strength = 42
+            self.aggression = 35
         
     
 teams = ['Bohemians', 'Dundalk', 'Drogheda United', 'UCD', 'Sligo Rovers', 'Shamrock Rovers', 'St Patricks Athletic', 'Cork City', 'Shelbourne' ]
-Bohemians = club('Bohemians', 60, 59, 59, 60, 1890, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Dundalk = club('Dundalk', 58, 58, 60, 58, 1903, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Drogheda_United = club('Drogheda United', 57, 57, 58, 56, 1919, '', '', '', '', '', 8570, 'Ireland', 'Irish Premier Division', '', '', '', '')
-UCDfc = club('UCD', 55, 55, 54, 54, 1895, '', '', '', '', '', 4290, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Sligo_Rovers = club('Sligo Rovers', 59, 59, 57, 58, 1928, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Shamrock_Rovers = club('Shamrock Rovers', 63, 63, 64, 62, 1899, '', '', '', '', '', 60020, 'Ireland', 'Irish Premier Division', '', '', '', '')
-St_Patricks_Athletic = club('St Patricks Athletic', 62, 61, 62, 63, 1929, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Cork_City = club('Galway United', 56, 56, 58, 56, 1984, '', '', '', '', '', 0, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Shelbourne = club('Shelbourne', 60, 61, 61, 59, 1895, '', '', '', '', '', 21440, 'Ireland', 'Irish Premier Division', '', '', '', '')
-Derry_City = club('Derry City', 61, 60, 64, 62, 1928, '', '', '', '', '', 100000, 'Ireland', 'Irish Premier Divsion', 0, 0, 0, 0)
     
 def trainingDay():
     delay_print("Training Day")
@@ -205,28 +195,29 @@ def trainingDay():
         ovrIncrease = random.uniform(0.0, 0.05)
     player.ovr += ovrIncrease
     delay_print(f"Your overall level is now {player.ovr:.0f}\n")
-    
+
+global clubs
     
 def matchday():
     delay_print("Match day\n")
-    opposition = random.choice(teams)
+    opposition = random.choice(clubs)
     print(f"Derry City v {opposition}")
     home = min(random.randint(0,4), random.randint(0,4))
     away = min(random.randint(0,4), random.randint(0,4))
-    club[9].gf += home
-    club[9].ga += away
-    club[9].gd += (home - away)
+    clubs[9].gf += home
+    clubs[9].ga += away
+    clubs[9].gd += (home - away)
     if home > away:
-        club[9].wins += 1
-        club[9].points += 3
+        clubs[9].wins += 1
+        clubs[9].points += 3
     elif home == away:
-        club[9].draws += 1
-        club[9].points += 1
+        clubs[9].draws += 1
+        clubs[9].points += 1
     elif home < away:
-        club[9].losses += 1
+        clubs[9].losses += 1
     if away == 0:
         cleansheet = True
-        club[9].cleansheets += 1
+        clubs[9].cleansheets += 1
     else:
         cleansheet = False
     if player.position == 'Defender' and player.ovr < 55:
