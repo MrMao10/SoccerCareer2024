@@ -1,0 +1,50 @@
+These are the coefficient multipliers used in fifa (i could find):
+
+CB --
+Marking  			0.15	
+Standing Tackle  	0.15
+Sliding Tackle 		0.15
+Heading				0.10
+Strength			0.10
+Aggression			0.08
+Interceptions		0.08
+Short Pass			0.05
+Ball Control		0.05
+Reactions			0.05
+Jumping				0.04
+Total				1.00
+
+My own multipliers:
+
+cm --
+					cm
+ATT. POSITIONING	0.051		
+BALL CONTROL		0.141
+DRIBBLING			0.071
+FINISHING			0.020
+INTERCEPTIONS       0.051		
+LONG PASSING		0.131
+LONG SHOTS			0.040					
+REACTIONS			0.081
+SHORT PASSING		0.172
+STAMINA				0.061
+STAND TACKLE		0.051		
+VISION				0.131				
+TOTAL				1.00
+
+att --
+
+ACCELERATION		0.040
+ATT. POSITIONING	0.136
+BALL CONTROL		0.111	
+DRIBBLING			0.076
+FINISHING			0.182
+HEADING ACC.		0.101	
+LONG SHOTS			0.030	
+REACTIONS			0.081
+SHORT PASSING		0.051
+SHOT POWER			0.111	
+SPRINT SPEED		0.051	
+STRENGTH			0.051
+VOLLEYS				0.010
+TOTAL				1.00
