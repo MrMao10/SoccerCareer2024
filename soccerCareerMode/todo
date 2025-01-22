@@ -21,3 +21,8 @@
 13. chance of not playing if rating is less than teams or if form is bad
 
 14. use coefficients and fifa stats to calculate ovr rating
+
+15. fix rich import
+
+16. get match engine to display teams and not let derry play one team more than once
+
