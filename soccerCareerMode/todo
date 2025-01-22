@@ -23,5 +23,3 @@
 15. fix rich import
 
 16. get match engine to not let derry play one team more than once
-
-17. make sure that the game doesnt continue as soon as you enter into a menu (stats, standings, ect.) via an input 'Press enter to continue'
