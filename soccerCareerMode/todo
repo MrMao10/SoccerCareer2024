@@ -1,25 +1,23 @@
 1. Swap out random probability of winning to different chances verses different teams and their ratings
 
-3. Make skill-specific training sessions chose by the user
+2. Make skill-specific training sessions chose by the user
 
-4. only advance days after asking player
+3. change probability of scoring, assisting and cleansheet on player's finishing, vision and defence levels
 
-5. change probability of scoring, assisting and cleansheet on player's finishing, vision and defence levels
+4. make training change position coefficient stats, and occasionally random ones, not overall, therefore affecting players ovr
 
-6. make training change position coefficient stats, and occasionally random ones, not overall, therefore affecting players ovr
+5. add man of the match (Over half of goal involvements for now, later add match ratings and passes, dribbles, completed, failed ect.)
 
-7. add man of the match (Over half of goal involvements for now, later add match ratings and passes, dribbles, completed, failed ect.)
+6. create league table which dislplays after each match
 
-8. create league table which dislplays after each match
+7. simulate matches between ai and display after each matchday
 
-9. simulate matches between ai and display after each matchday
+8. Get the load function in the start menu running
 
-12. in pause nenu, add option called 'save' and write variables on a txt file to be used later
+9. chance of not playing if form is bad
 
-13. chance of not playing if rating is less than teams or if form is bad
+10. use coefficients and fifa stats to calculate ovr rating
 
-14. use coefficients and fifa stats to calculate ovr rating
+11. fix rich import for vscode
 
-15. fix rich import
-
-16. get match engine to not let derry play one team more than once
+12. get match engine to not let derry play one team more than once
