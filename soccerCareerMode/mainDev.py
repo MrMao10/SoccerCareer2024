@@ -4,7 +4,7 @@ import random
 import datetime
 from lib.passDay import advance, startDate
 from lib.leagueTable import clubs
-#from rich import print
+from rich import print as rprint
 
 # Delay Printing Function
 def delay_print(s, delay=0.05):
@@ -208,8 +208,10 @@ def trainingDay():
     
 def matchday():
     delay_print("Match day\n")
-    if player.ovr < clubs[9].ovrRating:
+    if player.ovr <= clubs[9].ovrRating:
         playChance = random.randint(0, 1)
+    elif player.ovr > clubs[9].ovrRating:
+        playChance = max(random.randint(0, 1), random.randint(0, 1))
     if playChance == 1:
         player.appearances += 1
         while True:
@@ -452,11 +454,11 @@ if __name__ == "__main__":
     print(f"Position: {player.position}")
     print(f"Club: {player.club}")
     print(f"League: {player.league}")
-    print(f"[bold]Defending Attributes:[/bold] \n    Defensive Awareness: {player.defAwareness} \n    Stand Tackles: {player.standTackle} \n    Slide Tackle: {player.slideTackle} \n    Heading Accuracy: {player.headingAcc}")
+    rprint(f"[bold]Defending Attributes:[/bold] \n    Defensive Awareness: {player.defAwareness} \n    Stand Tackles: {player.standTackle} \n    Slide Tackle: {player.slideTackle} \n    Heading Accuracy: {player.headingAcc}")
     time.sleep(2)
-    print(f"[bold]Passing Attributes:[/bold] \n    Vision: {player.vision} \n    Crossing: {player.crossing} \n    fkAcc: {player.fkAcc} \n    Long Pass: {player.longPass} \n    Short Pass: {player.shortPass} \n    Curve: {player.curve}")
+    rprint(f"[bold]Passing Attributes:[/bold] \n    Vision: {player.vision} \n    Crossing: {player.crossing} \n    fkAcc: {player.fkAcc} \n    Long Pass: {player.longPass} \n    Short Pass: {player.shortPass} \n    Curve: {player.curve}")
     time.sleep(2)
-    print(f"[bold]Attacking attributes:[/bold]\n    Finishing: {player.finishing} \n    Attack Positioning: {player.attPosition} \n    Shot Power: {player.shotPower} \n    Long Shots: {player.longShots} \n    Penalties: {player.penalties} \n    Volleys: {player.volleys}")
+    rprint(f"[bold]Attacking attributes:[/bold]\n    Finishing: {player.finishing} \n    Attack Positioning: {player.attPosition} \n    Shot Power: {player.shotPower} \n    Long Shots: {player.longShots} \n    Penalties: {player.penalties} \n    Volleys: {player.volleys}")
     time.sleep(3)
     
     time.sleep(1)
