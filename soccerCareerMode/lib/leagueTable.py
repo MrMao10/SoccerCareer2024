@@ -19,17 +19,20 @@ class club:
         self.losses = losses
         self.cleansheets = cleansheets
 
+    def __repr__(self):
+        return self.name
+
 clubs = []
 
-clubs.append(club('Bohemians', 60, 59, 59, 60, 1890, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('Dundalk', 58, 58, 60, 58, 1903, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('Drogheda United', 57, 57, 58, 56, 1919, '', '', '', '', '', 8570, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('UCD', 55, 55, 54, 54, 1895, '', '', '', '', '', 4290, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('Sligo Rovers', 59, 59, 57, 58, 1928, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('Shamrock Rovers', 63, 63, 64, 62, 1899, '', '', '', '', '', 60020, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('St Patricks Athletic', 62, 61, 62, 63, 1929, '', '', '', '', '', 42870, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('Galway United', 56, 56, 58, 56, 1984, '', '', '', '', '', 0, 'Ireland', 'Irish Premier Division', '', '', '', ''))
-clubs.append(club('Shelbourne', 60, 61, 61, 59, 1895, '', '', '', '', '', 21440, 'Ireland', 'Irish Premier Division', '', '', '', ''))
+clubs.append(club('Bohemians', 60, 59, 59, 60, 1890, 0, 0, 0, 0, 0, 42870, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('Dundalk', 58, 58, 60, 58, 1903, 0, 0, 0, 0, 0, 42870, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('Drogheda United', 57, 57, 58, 56, 1919, 0, 0, 0, 0, 0, 8570, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('UCD', 55, 55, 54, 54, 1895, 0, 0, 0, 0, 0, 4290, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('Sligo Rovers', 59, 59, 57, 58, 1928, 0, 0, 0, 0, 0, 42870, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('Shamrock Rovers', 63, 63, 64, 62, 1899, 0, 0, 0, 0, 0, 60020, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('St Patricks Athletic', 62, 61, 62, 63, 1929, 0, 0, 0, 0, 0, 42870, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('Galway United', 56, 56, 58, 56, 1984, 0, 0, 0, 0, 0, 0, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
+clubs.append(club('Shelbourne', 60, 61, 61, 59, 1895, 0, 0, 0, 0, 0, 21440, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
 clubs.append(club('Derry City', 61, 60, 64, 62, 1928, 0, 0, 0, 0, 0, 100000, 'Ireland', 'Irish Premier Division', 0, 0, 0, 0))
 
 def display_league_table():
