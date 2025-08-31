@@ -205,9 +205,19 @@ def trainingDay():
     oldOvr = player.ovr - ovrIncrease
     delay_print(f"Old rating: {oldOvr:.0f}\nNew rating: {player.ovr:.0f}\n")
 
+derryPlayedClub2 = 0
+derryPlayedClub1 = 0
+derryPlayedClub0 = 0
+derryPlayedClub3 = 0
+derryPlayedClub4 = 0
+derryPlayedClub5 = 0
+derryPlayedClub6 = 0
+derryPlayedClub7 = 0
+derryPlayedClub8 = 0
     
 def matchday():
     delay_print("Match day\n")
+    global derryPlayedClub1, derryPlayedClub2, derryPlayedClub0, derryPlayedClub3, derryPlayedClub4, derryPlayedClub5, derryPlayedClub6, derryPlayedClub7, derryPlayedClub8
     if player.ovr <= clubs[9].ovrRating:
         playChance = random.randint(0, 1)
     elif player.ovr > clubs[9].ovrRating:
@@ -217,34 +227,79 @@ def matchday():
         while True:
             opposition = random.choice(clubs)
             if opposition == clubs[0]:
+                if derryPlayedClub0 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[0])}")
+                derryPlayedClub0 += 1
                 break
+            elif derryPlayedClub0 == 2:
+                continue
             elif opposition == clubs[1]:
+                if derryPlayedClub1 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[1])}")
+                derryPlayedClub1 += 1
                 break
+            elif derryPlayedClub1 == 2:
+                continue
             elif opposition == clubs[2]:
+                if derryPlayedClub2 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[2])}")
+                derryPlayedClub2 += 1
                 break
+            elif derryPlayedClub2 == 2:
+                continue
             elif opposition == clubs[3]:
+                if derryPlayedClub3 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[3])}")
+                derryPlayedClub3 += 1
                 break
+            elif derryPlayedClub3 == 2:
+                continue
             elif opposition == clubs[4]:
+                if derryPlayedClub4 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[4])}")
+                derryPlayedClub4 += 1
                 break
+            elif derryPlayedClub4 == 2:
+                continue
             elif opposition == clubs[5]:
+                if derryPlayedClub5 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[5])}")
+                derryPlayedClub5 += 1
                 break
+            elif derryPlayedClub5 == 2:
+                continue
             elif opposition == clubs[6]:
+                if derryPlayedClub6 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[6])}")
+                derryPlayedClub6 += 1
                 break
+            elif derryPlayedClub6 == 2:
+                continue
             elif opposition == clubs[7]:
+                if derryPlayedClub7 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[7])}")
+                derryPlayedClub7 += 1
                 break
+            elif derryPlayedClub7 == 2:
+                continue
             elif opposition == clubs[8]:
+                if derryPlayedClub8 > 2:
+                    continue
                 print(f"{repr(clubs[9])} v {repr(clubs[8])}")
+                derryPlayedClub8 += 1
                 break
+            elif derryPlayedClub8 == 2:
+                continue
             else:
-                print()
+                pass
         home = min(random.randint(0,4), random.randint(0,4))
         away = min(random.randint(0,4), random.randint(0,4))
         clubs[9].gf += home
@@ -447,13 +502,14 @@ if __name__ == "__main__":
     # Player Setup
     player = Footballer(firstName='', surname='', age='', ovr=46, pot=95, skills=0, weakFoot=0, club="Derry City", league="Irish Premier Devision", nationality='', price=50000, wage=350, position='', pace='', finishing='', attPosition='', shotPower='', longShots='', penalties='', volleys='', vision='', crossing='', fkAcc='', longPass='', shortPass='', curve='', agility='', balance='', reactions='', composure='', ballControl='', dribbling='', interceptions='', headingAcc='', defAwareness='',standTackle='', slideTackle='', jumping='', stamina='', strength='', aggression='', goalCount=0, assistCount=0, cleansheetCount=0, appearances=0)
     player.player_setup()
-    print("\nPlayer setup complete. Here is your player information:")
-    print(f"Name: {player.firstName} {player.surname}")
-    print(f"Age: {player.age}")
-    print(f"Nationality: {player.nationality}")
-    print(f"Position: {player.position}")
-    print(f"Club: {player.club}")
-    print(f"League: {player.league}")
+    delay_print("\nPlayer setup complete. Here is your player information:")
+    delay_print(f"Name: {player.firstName} {player.surname}")
+    delay_print(f"Age: {player.age}")
+    delay_print(f"Nationality: {player.nationality}")
+    delay_print(f"Position: {player.position}")
+    delay_print(f"Club: {player.club}")
+    delay_print(f"League: {player.league}")
+    time.sleep(2)
     rprint(f"[bold]Defending Attributes:[/bold] \n    Defensive Awareness: {player.defAwareness} \n    Stand Tackles: {player.standTackle} \n    Slide Tackle: {player.slideTackle} \n    Heading Accuracy: {player.headingAcc}")
     time.sleep(2)
     rprint(f"[bold]Passing Attributes:[/bold] \n    Vision: {player.vision} \n    Crossing: {player.crossing} \n    fkAcc: {player.fkAcc} \n    Long Pass: {player.longPass} \n    Short Pass: {player.shortPass} \n    Curve: {player.curve}")
@@ -461,6 +517,54 @@ if __name__ == "__main__":
     rprint(f"[bold]Attacking attributes:[/bold]\n    Finishing: {player.finishing} \n    Attack Positioning: {player.attPosition} \n    Shot Power: {player.shotPower} \n    Long Shots: {player.longShots} \n    Penalties: {player.penalties} \n    Volleys: {player.volleys}")
     time.sleep(3)
     
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    matchday()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    trainingDay()
+    time.sleep(1)
+    advance(player)
+    time.sleep(1)
+    matchday()
     time.sleep(1)
     advance(player)
     time.sleep(1)
